@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+    <title>Alyarein</title>
+</head>
+<body>
+    <div class="cukimay">
+        <h1>Happy Birthday</h1>
+        <div class="rocket">
+            <form onsubmit="pindahHalaman(); return false;"> <button id="rocketButton" onclick="kece.html">⭐</a> </button></form>
+            <div class="flame" id="flame"></div>
+          </div>          
+        <p>Klik bintangnya!</p>
+    </div>
+
+    <script>
+        const button = document.getElementById('rocketButton');
+      
+        button.addEventListener('click', () => {
+          button.classList.add('launching');
+      
+          // Kembalikan ke posisi semula setelah 1 detik
+          setTimeout(() => {
+            button.classList.remove('launching');
+          }, 1000);
+        });
+      </script>
+
+<script>
+    function pindahHalaman() {
+  
+      setTimeout(function() {
+        window.location.href = "kece.html";
+      }, 1000); // jeda 300ms agar efek tombol sempat tampil
+    }
+  </script>
+      
+</body>
+</html>

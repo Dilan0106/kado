@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Memories - Photo Gallery" />
+  <meta name="keywords" content="memories, photo, gallery" />
+  <meta name="author" content="Your Name" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
+  <link href="kacaw.css" rel="stylesheet" />
+  <title>Memories</title>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="cukimay" id="headerBox">
+    <header id="memoriesHeader">Memories</header>
+  </div>
+
+  <!-- SECTION 1: Tentang Alya -->
+  <section class="section1 zoomable-section fade-in">
+    <div class="bg-layer"></div>
+    <div class="p1">
+      <img src="alya.jpg" alt="Foto Alya" />
+      <div class="teks">
+        <p><strong>Alya Reinatha</strong></p>
+        <p>
+          Dia bukan cuma sekadar nama di kontak gua, tapi satu dari sedikit orang yang kehadirannya bisa ngubah hari biasa jadi luar biasa.
+          Senyumnya tuh bisa bikin lupa masalah, caranya ngomong tuh selalu bikin tenang, dan tatapan matanya? Kayak coklat manis bangett.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: Lanjutan tentang Alya -->
+  <section class="section2 zoomable-section fade-in">
+    <div class="bg-layer"></div>
+    <div class="p1 reverse">
+      <img src="alya2.jpg" alt="Foto Alya" />
+      <div class="teks">
+        <p><strong>Alya itu tipe orang yang kalau udah sayang,</strong></p>
+        <p>
+          dia bakal tulus banget. Bukan yang cuma hadir di saat senang, tapi juga yang peluk kamu saat dunia terasa berat.
+          Dia gak cuma manis di luar, tapi juga hangat di dalam. Bareng dia, segalanya terasa lebih hidup.
+          Kalau boleh jujur, dia tuh bukan cuma cerita, dia tuh harapan. Dan setiap kenangan bareng dia... selalu jadi bagian paling indah dari hidup gua.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: Tentang Keluarga -->
+  <section class="section3 zoomable-video-section fade-in">
+    <video autoplay loop playsinline class="video-bg" id="videoBackground">
+      <source src="mendarah.mp4" type="video/mp4" />
+      Browser kamu tidak mendukung video.
+    </video>
+
+    <div class="slider-wrapper">
+      <div class="slider-auto">
+        <img src="bareng2.jpg" alt="Keluarga 1" />
+        <img src="bareng1.jpg" alt="Keluarga 2" />
+        <img src="bareng4.jpg" alt="Keluarga 3" />
+        <img src="bareng3.jpg" alt="Keluarga 4" />
+        <img src="bareng5.jpg" alt="Keluarga 5" />
+      </div>
+    </div>
+
+    <div class="teks tengah">
+      <p><strong>Keluarga, Tempat Paling Nyaman</strong></p>
+      <p>
+        Gimana pun sibuknya hari, pulang ke rumah dan ketemu keluarga tuh selalu jadi momen yang bikin lega.
+        Mereka emang suka rese kadang, tapi justru itu yang bikin kangen.
+      </p>
+    </div>
+  </section>
+
+  <!-- JavaScript -->
+  <script>
+    // Sticky Header Scroll
+    window.addEventListener("scroll", function () {
+      const headerBox = document.getElementById("headerBox");
+      headerBox.classList.toggle("sticky", window.scrollY > 50);
+    });
+
+    // Fade-in on Scroll
+    document.addEventListener('DOMContentLoaded', () => {
+      const faders = document.querySelectorAll('.fade-in');
+      const appearOptions = {
+        threshold: 0.2,
+        rootMargin: "0px 0px -50px 0px"
+      };
+      const appearOnScroll = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        });
+      }, appearOptions);
+      faders.forEach(fader => appearOnScroll.observe(fader));
+    });
+
+    // Zoom on Scroll
+    const sections = document.querySelectorAll('.section1, .section2, .section3');
+    const zoomOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('zoom');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2, rootMargin: "0px 0px -50px 0px" });
+    sections.forEach(section => zoomOnScroll.observe(section));
+
+    // Auto Slider
+    const autoImages = document.querySelectorAll('.slider-auto img');
+    let autoIndex = 0;
+    setInterval(() => {
+      autoImages.forEach((img, i) => img.classList.toggle('active', i === autoIndex));
+      autoIndex = (autoIndex + 1) % autoImages.length;
+    }, 5000);
+  </script>
+
+</body>
+</html>

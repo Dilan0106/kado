@@ -1,0 +1,262 @@
+/* ===== GLOBAL ===== */
+body {
+    margin: 0;
+    font-family: 'Playfair Display', serif, sans-serif;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* ===== HEADER ===== */
+  .cukimay {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.5s ease;
+    z-index: 1000;
+  }
+  
+  .cukimay.sticky {
+    left: 20px;
+    transform: none;
+  }
+  
+  #memoriesHeader {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 8px 20px;
+    border-radius: 20px;
+    color: white;
+    font-size: 28px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s ease;
+  }
+  
+  /* ===== SECTIONS ===== */
+  .section1, .section2, .section3 {
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    color: white;
+  }
+  
+  .section1 {
+    background-image: url('rame.jpg');
+  }
+  
+  .section2 {
+    background-image: url('rame4.jpg');
+  }
+  
+  .section3 {
+    background-image: url('teman.jpg');
+    color: rgb(255, 255, 255);
+    overflow: hidden;
+  }
+  
+  /* Zoom effect tanpa blur */
+  .section1.zoom, .section2.zoom, .section3.zoom {
+    transform: scale(1.03);
+  }
+  
+  /* ===== KONTEN UTAMA ===== */
+  .p1 {
+    display: flex;
+    align-items: center; /* Vertikal tengah */
+    justify-content: space-between; /* Spasi antara gambar dan teks */
+    gap: 30px;
+    margin: 60px auto;
+    max-width: 1000px;
+    padding: 20px;
+    flex-wrap: wrap; /* Membungkus elemen saat layar kecil */
+  }
+  
+  .p1.reverse {
+    flex-direction: row-reverse; /* Gambar di sebelah kanan */
+  }
+  
+  .p1 img {
+    width: 280px;
+    min-width: 200px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .teks {
+    max-width: 500px;
+    flex: 1;
+    font-size: 20px;
+    line-height: 1.6;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border-radius: 12px;
+    color: inherit;
+  }
+  
+  .teks p:first-child {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .p1 {
+      flex-direction: column; /* Gambar dan teks ditumpuk pada perangkat kecil */
+      text-align: center;
+    }
+  
+    .p1 img {
+      width: 100%; /* Gambar akan mengisi lebar container */
+      margin-bottom: 20px; /* Ruang di bawah gambar */
+    }
+  
+    .teks {
+      text-align: center;
+    }
+  }
+  
+  /* ===== FADE-IN ANIMATION ===== */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  .fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* ===== VIDEO BACKGROUND ===== */
+  .video-bg {
+    position: absolute;
+    top: 50px; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+    z-index: -1;
+    transform: scale(1);
+    filter: none;
+  }
+  
+  /* ===== SLIDER ===== */
+  .slider-wrapper {
+    position: relative;
+    max-width: 700px;
+    margin: 0 auto 30px;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    padding-top: 50px;
+  }
+  
+  .slider-auto {
+    position: relative;
+    width: 100%;
+    height: 400px;
+  }
+  
+  .slider-auto img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease;
+    border-radius: 16px;
+  }
+  
+  .slider-auto img.active {
+    opacity: 1;
+    z-index: 1;
+  }
+  
+  /* ===== TEKS TENGAH ===== */
+  .teks.tengah {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 12px;
+    color: white;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .section3 .video-bg {
+    filter: blur(4px);
+    transform: scale(1.05);
+    content: "";
+    position: absolute;
+    top: 0;
+    object-fit: cover;
+    left: 0;  
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  
+  /* ===== SECTION ZOOMABLE ===== */
+  .zoomable-section {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .bg-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.8s ease, filter 0.8s ease;
+    z-index: -1;
+    filter: blur(0);
+  }
+  
+  .section1 .bg-layer {
+    background-image: url('rame.jpg');
+  }
+  
+  .section2 .bg-layer {
+    background-image: url('rame4.jpg');
+  }
+  
+  .section3 .bg-layer {
+    background-image: url('teman.jpg');
+  }
+  
+  /* Zoom saat disentuh atau di-hover */
+  .zoomable-section:hover .bg-layer,
+  .zoomable-section:active .bg-layer {
+    transform: scale(1.05);
+  }
+  
+  /* Zoom saat scroll */
+  .zoomable-section.zoom .bg-layer {
+    transform: scale(1.03);
+    filter: blur(4px);
+  }
+  
+  /* Konten section */
+  .p1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin: 60px auto;
+    max-width: 1000px;
+    padding: 20px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index:  1;
+  }
