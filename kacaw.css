@@ -260,3 +260,10 @@ body {
     position: relative;
     z-index:  1;
   }
+.footer {
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  color: #aaa;
+  background-color: #111;
+}
